@@ -30,3 +30,31 @@ kelvin!.gadget = iphone
 iphone!.owner = kelvin
 kelvin = nil
 iphone = nil
+
+---------------
+
+class A {
+    var c : (() -> Void)?
+    deinit {
+        print("deinit A ")
+    }
+}
+
+class B {
+    var a: A? = A()
+    var d = 2
+    init() {
+        a!.c = {
+            self.d = 3
+            print("p")
+        }
+        a = nil
+    }
+    
+    deinit {
+        print("deinit B ")
+    }
+}
+
+//    let a = UIButton()
+//    UIButton responder chain -> UIButton -> UIControl -> UIView -> UIResponder -> NSObject
